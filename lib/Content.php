@@ -11,19 +11,11 @@ class Content {
      public static function getPostCover ($cid, $covers = NULL) {
         if (empty($cover)) {
             $imageList = [
-                Diaspora_Const::STATIC_URL . '/Background/10.jpg',
-                Diaspora_Const::STATIC_URL . '/Background/14.png',
-                Diaspora_Const::STATIC_URL . '/Background/18.jpg',
-                Diaspora_Const::STATIC_URL . '/Background/19.jpg',
-                Diaspora_Const::STATIC_URL . '/Background/25.jpg',
-                Diaspora_Const::STATIC_URL . '/Background/27.png',
-                Diaspora_Const::STATIC_URL . '/Background/30.jpg',
-                Diaspora_Const::STATIC_URL . '/Background/36.jpg',
-                Diaspora_Const::STATIC_URL . '/Background/68.png',
-                Diaspora_Const::STATIC_URL . '/Background/70.jpg'
+                Diaspora_Const::STATIC_URL . '/Background/1.png',
+                Diaspora_Const::STATIC_URL . '/Background/1.jpg'
             ];
-            $image = ($cover) ? mb_split("\n", $cover) : (Diaspora::$options->defaultThumbnails) ? mb_split("\n", Diaspora::$options->defaultThumbnails) : $imageList;
-            /*后缀是jpg，png，webp丢进background里就能随机调用
+            $image = ($covers) ? mb_split("\n", $covers) : ((Diaspora::$options->defaultThumbnails) ? mb_split("\n", Diaspora::$options->defaultThumbnails) : $imageList);
+            /*
             $staticpath ='/Background';
 			if($cid!=null){
 				$staticpath=$staticpath.'/ContentImage';
@@ -49,17 +41,12 @@ class Content {
 
         return $covers;
     }
-	
-	
-	public static function Post0Cover ($cid, $cover = NULL) {
-        if (empty($cover)) {
-            $imageList = [
-                $_SERVER['HTTPS_HOST']. '/Background/1.webp',
 
-            ];
-            $image = ($cover) ? mb_split("\n", $cover) : (Diaspora::$options->defaultThumbnails) ? mb_split("\n", Diaspora::$options->defaultThumbnails) : $imageList;
-            $index = abs($cid) % count($image);
-            $cover = $image[$index];
+    
+	public static function Post0Cover ($cover = NULL) {
+        if (empty($cover)) {
+            $image0 = '/Background/post0/1.webp';
+            $cover = $image0;
         }
 
         return $cover;
