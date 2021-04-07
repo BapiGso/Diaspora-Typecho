@@ -60,7 +60,7 @@
         </div>
     </div>
     <?php if($this->fields->bgMusicList) { ?>
-        <audio id="audio-<?php $this->cid(); ?>-1" loop="1" preload="auto" controls="controls">
+        <audio id="audio-<?php $this->cid(); ?>-1" preload="auto" controls="controls">
             <source type="audio/mpeg" src="<?php echo Content::rankPostMusic($this->fields->bgMusicList) ?>">
         </audio>
     <?php } ?>
