@@ -4,7 +4,8 @@
  * 
  * @package Diaspora
  * @author Jin
- * @version 1.0.0
+ * @modified smoe.cc 
+ * @version 2.8.0
  * @link https://jcl.moe
  */
 ?>
@@ -24,12 +25,12 @@
             'category' => $this->category,
             'commentNum' => $this->commentsNum,
             'content' => $this->content,
-            'excerpt' => Content::substring($this->content, 50),
+            'excerpt' => Content::substring($this->content, 80),
             'cover' => Content::getPostCover($this->cid, $this->fields->coverList),
             'backcover' => Content::Post0Cover('', $this->fields->cover),
             'views' => Content::postViews($this),
             'strLen' => Content::utf8Strlen($this->content),
-            'likeNum' => Content::likeNum($this->cid)
+            'likeNum' => COntent::likeNum($this->cid)
         ];
     }
 ?>
@@ -37,7 +38,7 @@
     <div id="screen">
         <div id="mark">
             <div class="layer" data-depth="0.4">
-                <img id="cover" crossorigin="anonymous" src="<?php echo $article[0]['backcover'] ?>" width="2500" height="1637"/>
+                <img id="cover" crossorigin="anonymous" src="<?php echo $article[0]['backcover'] ?>" width="2500" height="1637" alt="cover">
             </div>
         </div>
 
@@ -50,7 +51,7 @@
 
         <div id="header">
             <div>
-                <a class="image-logo" href="/"></a>
+                <a class="image-logo" href="<?php $this->options->siteUrl(); ?>"></a>
                 <div class="icon-menu switchmenu"></div>
             </div>
         </div>
@@ -66,7 +67,7 @@
         <?php for ($i = (Diaspora::isAjax() ? 0 : 1); $i < count($article); $i++) { ?>
             <div class="post">
                 <a data-id="<?php echo $article[$i]['cid'] ?>" href="<?php echo $article[$i]['permalink'] ?>" title="<?php echo $article[$i]['title'] ?>">
-                    <img width="680" height="440" src="<?php echo $article[$i]['cover'] ?>" class="cover">
+                    <img width="680" height="440" src="<?php echo $article[$i]['cover'] ?>" class="cover" alt="cover">
                 </a>
                 <div class="else">
                     <p><?php echo Content::cnDate(date('m', $article[$i]['timeStamp'])) . ' ' . date("d, Y", $article[$i]['timeStamp']) ?></p>

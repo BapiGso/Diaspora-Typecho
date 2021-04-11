@@ -7,7 +7,6 @@
  * @LastEditTime: 2020-03-12 21:54:05
  * @FilePath: /diaspora/functions.php
  */
-require_once("lib/Const.php");
 require_once("lib/Diaspora.php");
 require_once("lib/Settings.php");
 require_once("lib/Title.php");
@@ -30,11 +29,9 @@ function themeInit(Widget_Archive $archive) {
 
 function themeConfig ($form) {       
     echo Diaspora::welcome();
-         
     $form->addInput(new Title('imageTitle', NULL, NULL, _t('配图及图像管理'), NULL));
-    $defaultThumbnails = new Typecho_Widget_Helper_Form_Element_Textarea('defaultThumbnails', NULL, NULL, _t('默认背景图列表'), _t(', 每行填写一个链接（自动换行的视为同一行），在文章没有配置文章主图的时候，将会从这里挑选一张图片进行显示。'));
+    $defaultThumbnails = new Typecho_Widget_Helper_Form_Element_Textarea('defaultThumbnails', NULL, NULL, _t('默认背景图列表'), _t('每行填写一个链接（自动换行的视为同一行），缺省为Background/post0/1.webp'));
     $form->addInput($defaultThumbnails);
-    
     $form->addInput(new Title('customExtendsTitle', NULL, NULL, _t('主题自定义扩展')));
     $customHTMLInHeadTitle = new Typecho_Widget_Helper_Form_Element_Textarea('customHTMLInHeadTitle', NULL, NULL, _t('自定义 HTML 元素拓展 - 标签: head 头部 (meta 元素后)'), _t('在 head 标签头部(meta 元素后)添加你自己的 HTML 元素<br>你可以在这里拓展一些 meta 信息, 或一些其他信息。<br>某些统计代码可能要求被加入到尽可能靠前的位置, 那么你可以将其加入到这里。<br>不建议在这里添加 css'));
     $form->addInput($customHTMLInHeadTitle);
@@ -57,9 +54,9 @@ function themeFields ($layout) {
             }, false);
         </script>
     ';
-    $coverList = new Typecho_Widget_Helper_Form_Element_Textarea('coverList', NULL, NULL, _t('背景图列表'), _t('输入图片URL，如有多个则一行一个，随机选择展示。'));
+    $coverList = new Typecho_Widget_Helper_Form_Element_Textarea('coverList', NULL, NULL, _t('背景图列表'), _t('输入图片URL，如有多个则一行一个，随机选择展示。https://smoe.cc/Background/ContentImage/?.webp'));
     $layout->addItem($coverList);
-    $bgMusicList = new Typecho_Widget_Helper_Form_Element_Textarea('bgMusicList', NULL, NULL, _t('音乐列表'), _t('输入音乐URL，如有多个则一行一个，随机选择播放。'));
+    $bgMusicList = new Typecho_Widget_Helper_Form_Element_Textarea('bgMusicList', NULL, NULL, _t('音乐列表'), _t('输入音乐URL，如有多个则一行一个，随机选择播放。https://music.163.com/song/media/outer/url?id=?.mp3'));
     $layout->addItem($bgMusicList);
 }
 ?>

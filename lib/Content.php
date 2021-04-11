@@ -11,10 +11,9 @@ class Content {
      public static function getPostCover ($cid, $covers = NULL) {
         if (empty($cover)) {
             $imageList = [
-                Diaspora_Const::STATIC_URL . '/Background/1.png',
-                Diaspora_Const::STATIC_URL . '/Background/1.jpg'
+
             ];
-            $image = ($covers) ? mb_split("\n", $covers) : ((Diaspora::$options->defaultThumbnails) ? mb_split("\n", Diaspora::$options->defaultThumbnails) : $imageList);
+            $image = ($covers) ? mb_split("\n", $covers) : $imageList;
             /*
             $staticpath ='/Background';
 			if($cid!=null){
@@ -43,16 +42,30 @@ class Content {
     }
 
     
-	public static function Post0Cover ($cover = NULL) {
-        if (empty($cover)) {
-            $image0 = '/Background/post0/1.webp';
-            $cover = $image0;
+	public static function Post0Cover ($default0, $default1 = NULL) {
+	    $default0 = Diaspora::$options->defaultThumbnails ;
+	    $http_type = 'http';//判断http类型
+        if (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off') {
+        $http_type = 'https';
+        } elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+        $http_type = 'https';
+        } elseif (!empty($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower($_SERVER['HTTP_FRONT_END_HTTPS']) !== 'off') {
+        $http_type = 'https';
         }
-
-        return $cover;
+        if ($http_type == 'https') {
+        $default1 = 'https://'.$_SERVER['HTTP_HOST'] .'/Background/post0/1.webp';
+        } else {
+        $default1 = 'http://'.$_SERVER['HTTP_HOST'] .'/Background/post0/1.webp';
+        }
+        if ($default0 != null){
+	    return $default0;
+	    }
+	    else{
+	    return $default1;
+	    }
     }
-	
 
+/*
     public static function  getfiles($path, $allowFiles = '', $depth = 1, $substart = 0, &$files = array()){
         $depth--;
         $path = realpath($path) . '/';
@@ -77,7 +90,7 @@ class Content {
         sort($files);
         return $files;
     }
-
+*/
     public static function rankPostMusic ($musicList = NULL) {
         if ($musicList == NULL) {
             return '';
@@ -90,10 +103,8 @@ class Content {
     }
 
     public static function substring($string, $length, $append = false) {
-        if(mb_strlen($string, 'utf8') > $length) {
-        	return mb_substr($string, 0, $length, 'utf8').'...';
-        } else {
-            return $string;
+        if ( $length <= 0 ) {
+            return '';
         }
         
         // 检测原始字符串是否为UTF-8编码
@@ -120,7 +131,7 @@ class Content {
             $newstr .= $append;
         }
         
-        return $newstr;
+        return $newstr.'...';
     }
 
     public static function timeAgo ($agoTime) {  

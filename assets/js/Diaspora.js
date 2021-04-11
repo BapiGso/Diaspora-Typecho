@@ -186,7 +186,7 @@ let Diaspora = {
             return
         }
 
-        if (p.eq(0).data("autoplay") == true) {
+        if (p.eq(0).data("autoplay") == false) {
             p[0].play();
         }
 
@@ -237,21 +237,6 @@ let Diaspora = {
         id.style.top = (_height - parseInt(id.style.height)) / 2 + 'px';
     },
 
-    loadDisqus: function () {
-        let disqus_title = $('.comment-wrap').data('title'),
-            disqus_url = $('.comment-wrap').data('url'),
-            disqus_identifier = $('.comment-wrap').data('identifier'),
-            disqus_load = false;
-
-        if (!disqus_load) {
-            let dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-            dsq.src = '//' + Page.DISQUS_SHORT_NAME + '.disqus.com/embed.js'; dsq.setAttribute('data-timestamp', +new Date());
-            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-
-            $('.loadDisqus').remove();
-            $(window).off("scroll", scrollFunction);
-        }
-    },
 
     setContent: function (id) {
         $elem = $('.content');
@@ -579,44 +564,12 @@ $(function () {
 
         $('.icon-icon, .image-icon').attr('href', '/')
 
-        // get download link
-        /*$('.content img').each(function() {
-            if ($(this).attr('src').indexOf('/uploads/2014/downloading.png') > -1) {
-                $(this).hide()
-                $('.downloadlink').attr('href', $(this).parent().attr('href')).css('display', 'block')
-            }
-        })*/
 
         $('#top').show()
 
     }
 
-    $(window).on('scroll', function () {
-        if ($('.scrollbar').length && !Diaspora.P() && !$('.icon-images').hasClass('active')) {
-            let st = $(window).scrollTop(),
-                ct = $('.content').height();
 
-            if (st > ct) {
-                st = ct
-            }
-
-            $('.scrollbar').width((50 + st) / ct * 100 + '%')
-
-            if (st > 80 && window.innerWidth > 800) {
-                $('.subtitle').fadeIn()
-            } else {
-                $('.subtitle').fadeOut()
-            }
-        }
-    })
-
-    $(window).on('scroll', scrollFunction = function (e) {
-        if ($('#single').length) {
-            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-                // Diaspora.loadDisqus ();
-            }
-        }
-    })
 
     $(window).on('touchmove', function (e) {
         if ($('body').hasClass('mu')) {
@@ -679,62 +632,6 @@ $(function () {
                 })
 
                 return false;
-                break;
-
-            // post images
-            case (tag.indexOf('icon-images') != -1):
-                window.scrollTo(0, 0)
-
-                let d = $('.icon-images');
-
-                if (d.data('status') == 'loading') {
-                    return false
-                }
-
-                if (d.hasClass('active')) {
-                    d.removeClass('active')
-
-                    $('.article').css('height', 'auto')
-                    $('.section').css('left', '-100%')
-                    setTimeout(function () {
-                        $('.images').data('height', $('.images').height()).css('height', '0')
-                    }, 0)
-                } else {
-                    d.addClass('active')
-
-                    $('.images').css('height', $('.images').data('height'))
-
-                    if ($('.icon-images').hasClass('tg')) {
-                        $('.section').css('left', 0)
-
-                        setTimeout(function () { $('.article').css('height', '0') }, 0)
-                    } else {
-                        if (!(Diaspora.P() && window.innerWidth < 700)) {
-                            $('.zoom').Chocolat()
-                        }
-
-                        Diaspora.loading()
-                        d.data('status', 'loading')
-
-                        let m = 5, r = 120;
-                        if (Diaspora.P() && window.innerWidth < 600) {
-                            m = 1;
-                            r = 80;
-                        }
-                        $('#jg').justifiedGallery({
-                            margins: m,
-                            rowHeight: r,
-                        }).on('jg.complete', function () {
-                            $('.section').css('left', 0)
-                            $('.icon-images').addClass('tg')
-
-                            d.data('status', '')
-                            Diaspora.loaded()
-                            setTimeout(function () { $('.article').css('height', '0') }, 0)
-                        })
-                    }
-
-                }
                 break;
 
             // qrcode
@@ -801,18 +698,6 @@ $(function () {
             // history state
             case (tag.indexOf('posttitle') != -1):
                 Diaspora.HS($(e.target), 'push')
-                return false;
-                break;
-
-            // relate post
-            case (tag.indexOf('relatea') != -1):
-                Diaspora.HS($(e.target), 'replace')
-                return false;
-                break;
-
-            // relate post
-            case (tag.indexOf('relateimg') != -1):
-                Diaspora.HS($(e.target).parent(), 'replace')
                 return false;
                 break;
 

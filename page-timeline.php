@@ -8,6 +8,8 @@
  * @FilePath: /diaspora/page-timeline.php
  */
 ?>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
 	<meta charset="<?php $this->options->charset(); ?>">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -24,19 +26,14 @@
             'author'    =>  _t('%s 发布的文章')
         ), ''); ?></title>
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/Diaspora.css'); ?>">
-    <script>
-        window['LocalConst'] = {
-            MAX_PAGES: <?php echo Diaspora::getPageSize() ?>
-        };
-    </script>
-    
+<link rel="shortcut icon" href="/usr/themes/Diaspora-Typecho-master/assets/images/ico.png"type="image/x-icon" />
+<head>
+
 <div id="single" class="page">
     <div id="top">
-        <a class="image-icon" href="javascript:history.back()"></a>
+        <a class="image-icon" href="javascript:history.back()"></a><a href="<?php $this->options->siteUrl(); ?>">
     </div>
     
-
-
     <div class="section" style="left: 0;">
 	    <div class="article">
             <div>
@@ -71,11 +68,4 @@
             </div>
         </div>
     </div>
-</div>
-<head>
-
-
-
-<div id="top" style="display: block;">
-	<a href= "/"> <!-- 单独打开跳转主页而不是javascript:history.back -->
-<img border="0" src="/usr/themes/Diaspora-Typecho-master/assets/images/logo_min.svg"width="24" height="24" style="position:relative;top:14px;left:14px;"></a>   </div>
+</div></html>

@@ -8,10 +8,10 @@
  * @FilePath: /Diaspora/component/header.php
  */
 ?>
-
 <?php if (!Diaspora::isAjax()) { ?>
 <!DOCTYPE html>
 <html class="loading">
+<html lang="zh-CN">
 <head>
     <meta charset="<?php $this->options->charset(); ?>">
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -28,16 +28,14 @@
             'author'    =>  _t('%s 发布的文章')
         ), '', ' - '); ?><?php $this->options->title(); ?></title>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/Diaspora.css'); ?>">
+    <link rel="shortcut icon" href="/usr/themes/Diaspora-Typecho-master/assets/images/ico.png"type="image/x-icon" />
+    <?php $this->header(); ?>
     <script>
         window['LocalConst'] = {
             MAX_PAGES: <?php echo Diaspora::getPageSize() ?>
         };
     </script>
-    <style>
-        .image-logo{background-image:url(<?php $this->options->themeUrl('assets/images/smoe.svg'); ?>)}body.mu .image-logo{background-image:url(<?php $this->options->themeUrl('assets/images/smoe.svg'); ?>)}.image-icon{background-image:url(<?php $this->options->themeUrl('assets/images/logo_min.svg'); ?>)}
-    </style>
 
-    <?php $this->header(); ?>
 </head>
 <body class="loading">
     <div id="loader"></div>
