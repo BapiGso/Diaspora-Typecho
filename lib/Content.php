@@ -42,27 +42,14 @@ class Content {
     }
 
     
-	public static function Post0Cover ($default0, $default1 = NULL) {
+	public static function Post0Cover ($default0, $default1,$http_type = NULL) {
+	    $http_type = $this->options->rootUrl;
 	    $default0 = Diaspora::$options->defaultThumbnails ;
-	    $http_type = 'http';//判断http类型
-        if (!empty($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) !== 'off') {
-        $http_type = 'https';
-        } elseif (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
-        $http_type = 'https';
-        } elseif (!empty($_SERVER['HTTP_FRONT_END_HTTPS']) && strtolower($_SERVER['HTTP_FRONT_END_HTTPS']) !== 'off') {
-        $http_type = 'https';
-        }
-        if ($http_type == 'https') {
-        $default1 = 'https://'.$_SERVER['HTTP_HOST'] .'/Background/post0/1.webp';
-        } else {
-        $default1 = 'http://'.$_SERVER['HTTP_HOST'] .'/Background/post0/1.webp';
-        }
-        if ($default0 != null){
-	    return $default0;
-	    }
-	    else{
-	    return $default1;
-	    }
+        $default1 = $http_type .'/Background/post0/1.webp';
+        switch ($default0){
+        case NULL:
+        return $default1;
+        break;
     }
 
 /*
@@ -131,7 +118,7 @@ class Content {
             $newstr .= $append;
         }
         
-        return $newstr.'...';
+        return $newstr . '...';
     }
 
     public static function timeAgo ($agoTime) {  
@@ -199,7 +186,7 @@ class Content {
     public static function likeNum ($cid) {
         $db = Typecho_Db::get();
         if (!array_key_exists('likes', $db->fetchRow($db->select()->from('table.contents')))) {
-            $db->query('ALTER TABLE `'.$db->getPrefix().'contents` ADD `likes` INT(10) DEFAULT 0;');
+            $db->query('ALTER TABLE `',$db->getPrefix().'contents` ADD `likes` INT(10) DEFAULT 0;');
         }
         $exist = $db->fetchRow($db->select('likes')->from('table.contents')->where('cid = ?', $cid))['likes'];
 
