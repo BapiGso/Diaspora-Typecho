@@ -42,42 +42,17 @@ class Content {
     }
 
     
-	public static function Post0Cover ($default0, $default1,$http_type = NULL) {
-	    $http_type = $this->options->rootUrl;
-	    $default0 = Diaspora::$options->defaultThumbnails ;
-        $default1 = $http_type .'/Background/post0/1.webp';
+	public static function Post0Cover ($default0, $default1,$url = NULL) {
+	    $url->options->rootUrl;
+	    $default0 = Diaspora::$options->defaultThumbnails;
+        $default1 = $url .'/Background/post0/1.webp';
         switch ($default0){
         case NULL:
         return $default1;
-        break;
-    }
+        break;}
+	}
 
-/*
-    public static function  getfiles($path, $allowFiles = '', $depth = 1, $substart = 0, &$files = array()){
-        $depth--;
-        $path = realpath($path) . '/';
-        $substart = $substart ? $substart : strlen($path);
 
-        if (!is_dir($path)){
-            return false;
-        }
-
-        if($handle = opendir($path)){
-            while (false !== ($file = readdir($handle))) {
-                if ($file != '.' && $file != '..') {
-                    $path2 = $path . $file;
-                    if (is_dir($path2) && $depth > 0){
-                        getfiles($path2, $allowFiles, $depth, $substart, $files);
-                    } elseif (empty($allowFiles) || preg_match($allowFiles, $file)) {
-                        $files[] = substr($path2, $substart);
-                    }
-                }
-            }
-        }
-        sort($files);
-        return $files;
-    }
-*/
     public static function rankPostMusic ($musicList = NULL) {
         if ($musicList == NULL) {
             return '';
