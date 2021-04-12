@@ -15,8 +15,8 @@
 <meta name="google" content="notranslate" />
 <head>
 
-<div id="single" class="page" style="min-height: 744px;">
-    <div id="top" style="display: block;">
+<div id="single" class="page">
+    <div id="top">
         <a class="image-icon" href="javascript:history.back()"></a>
     </div>
 
