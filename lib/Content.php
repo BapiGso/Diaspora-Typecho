@@ -46,10 +46,10 @@ class Content {
 	    $url->options->rootUrl;
 	    $default0 = Diaspora::$options->defaultThumbnails;
         $default1 = $url .'/Background/post0/1.webp';
-        switch ($default0){
-        case NULL:
-        return $default1;
-        break;}
+        if ($default0 == NULL){
+        return $default1;}
+        else{
+        return $default0;}
 	}
 
 
