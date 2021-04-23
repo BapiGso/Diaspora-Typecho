@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN" class="">
 <head>
-<title>晓梦  | 未找到页面</title>
+<title><?php $this->options->title(); ?>  | <?php $this->archiveTitle('',''); ?></title>
 <link rel="stylesheet" href="/usr/themes/Diaspora-Typecho-master/assets/css/Diaspora.css">
 <link rel="icon" href="/usr/themes/Diaspora-Typecho-master/assets/images/ico.png"type="image/x-icon" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
