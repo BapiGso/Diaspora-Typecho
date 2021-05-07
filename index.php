@@ -27,7 +27,7 @@
             'content' => $this->content,
             'excerpt' => Content::substring($this->content, 80),
             'cover' => Content::getPostCover($this->cid, $this->fields->coverList),
-            'backcover' => Content::Post0Cover('', $this->fields->cover),
+            'backcover' => Content::Post0Cover($this->fields->cover),
             'views' => Content::postViews($this),
             'strLen' => Content::utf8Strlen($this->content),
             'likeNum' => Content::likeNum($this->cid)
