@@ -32,6 +32,9 @@ function themeConfig ($form) {
     $form->addInput(new Title('imageTitle', NULL, NULL, _t('配图及图像管理'), NULL));
     $defaultThumbnails = new Typecho_Widget_Helper_Form_Element_Textarea('defaultThumbnails', NULL, NULL, _t('默认背景图列表'), _t('每行填写一个链接（自动换行的视为同一行），缺省为Background/post0/1.webp'));
     $form->addInput($defaultThumbnails);
+    $form->addInput(new Title('Gravatar', NULL, NULL, _t('评论头像源管理'), NULL));
+    $defaultGravatar = new Typecho_Widget_Helper_Form_Element_Textarea('defaultGravatar', NULL, NULL, _t('评论头像源'), _t('每行填写一个链接（自动换行的视为同一行），缺省为https://secure.gravatar.com/'));
+    $form->addInput($defaultGravatar);
     $form->addInput(new Title('customExtendsTitle', NULL, NULL, _t('主题自定义扩展')));
     $customHTMLInHeadTitle = new Typecho_Widget_Helper_Form_Element_Textarea('customHTMLInHeadTitle', NULL, NULL, _t('自定义 HTML 元素拓展 - 标签: head 头部 (meta 元素后)'), _t('在 head 标签头部(meta 元素后)添加你自己的 HTML 元素<br>你可以在这里拓展一些 meta 信息, 或一些其他信息。<br>某些统计代码可能要求被加入到尽可能靠前的位置, 那么你可以将其加入到这里。<br>不建议在这里添加 css'));
     $form->addInput($customHTMLInHeadTitle);
