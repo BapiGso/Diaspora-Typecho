@@ -8,7 +8,7 @@
  * @FilePath: /diaspora/component/comments.php
  */
 ?>
-<?php define('__TYPECHO_GRAVATAR_PREFIX__', 'https://gravatar.loli.net/avatar/'); ?>
+<?php define('__TYPECHO_GRAVATAR_PREFIX__',Content::GravatarSource($this) ); ?>
 <?php function threadedComments($comments, $options) {
     $commentClass = '';
     if ($comments->authorId) {
