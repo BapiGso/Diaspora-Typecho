@@ -43,7 +43,7 @@ class Content {
 
     
 	public static function Post0Cover ($default0, $default1 = NULL) {
-	    $default0 = Diaspora::$options->defaultThumbnails;
+        $default0 = Diaspora::$options->defaultThumbnails;
         $default1 = Helper::options() -> rootUrl .'/Background/post0/1.webp';
         if ($default0 == NULL){
         return $default1;}
