@@ -28,7 +28,6 @@
             'author'    =>  _t('%s 发布的文章')
         ), '', ' - '); ?><?php $this->options->title(); ?></title>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/Diaspora.css'); ?>">
-    <link rel="shortcut icon" href="/usr/themes/Diaspora-Typecho-master/assets/images/ico.png"type="image/x-icon" />
     <?php $this->header(); ?>
     <script>
         window['LocalConst'] = {
