@@ -30,7 +30,7 @@
             'backcover' => Content::Post0Cover('', $this->fields->cover),
             'views' => Content::postViews($this),
             'strLen' => Content::utf8Strlen($this->content),
-            'likeNum' => COntent::likeNum($this->cid)
+            'likeNum' => Content::likeNum($this->cid)
         ];
     }
 ?>
