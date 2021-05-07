@@ -37,20 +37,26 @@ class Content {
             $index = abs($cid) % count($image);
             $cover = $image[$index];
         }
-
         return $covers;
     }
 
-    
-	public static function Post0Cover ($default0, $default1 = NULL) {
-        $default0 = Diaspora::$options->defaultThumbnails;
-        $default1 = Helper::options() -> rootUrl .'/Background/post0/1.webp';
-        if ($default0 == NULL){
-        return $default1;}
-        else{
-        return $default0;}
+	
+	public static function Post0Cover ($DefaultCover = NULL) {
+	    $DefaultCover = Diaspora::$options->defaultThumbnails;
+	    if (empty($DefaultCover)) {
+	    $DefaultCover = Helper::options() -> rootUrl .'/Background/post0/1.webp';
+	    }
+        return $DefaultCover;
 	}
-
+	
+	public static function GravatarSource ($Gravatar = NULL) {
+        $Gravatar = Diaspora::$options->defaultGravatar;
+        if (empty($default0)) {
+	    $Gravatar = 'https://secure.gravatar.com/avatar/';
+	    }
+        return $Gravatar;
+	}
+	
     public static function rankPostMusic ($musicList = NULL) {
         if ($musicList == NULL) {
             return '';
