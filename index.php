@@ -25,7 +25,7 @@
             'category' => $this->category,
             'commentNum' => $this->commentsNum,
             'content' => $this->content,
-            'excerpt' => Content::substring($this->content, 80),
+            'excerpt' => Content::substring($this->content, 80,'...'),
             'cover' => Content::getPostCover($this->cid, $this->fields->coverList),
             'backcover' => Content::Post0Cover($this->fields->cover),
             'views' => Content::postViews($this),
@@ -57,7 +57,7 @@
         </div>
 
         <div id="post0">
-            <p><?php echo Content::cnDate(date('m', $article[0]['timeStamp'])) . ' ' . date("d, Y", $article[0]['timeStamp']) ?></p>
+            <p><?php echo Content::cnDate(date('m', $article[0]['timeStamp'])) , ' ' , date("d, Y", $article[0]['timeStamp']) ?></p>
             <h2><a data-id="<?php echo $article[0]['cid'] ?>" class="posttitle" href="<?php echo $article[0]['permalink'] ?>"><?php echo $article[0]['title'] ?></a></h2>
             <div class="summary"><?php echo $article[0]['excerpt'] ?></div>
         </div>
@@ -70,16 +70,14 @@
                     <img width="680" height="440" src="<?php echo $article[$i]['cover'] ?>" class="cover" alt="cover">
                 </a>
                 <div class="else">
-                    <p><?php echo Content::cnDate(date('m', $article[$i]['timeStamp'])) . ' ' . date("d, Y", $article[$i]['timeStamp']) ?></p>
+                    <p><?php echo Content::cnDate(date('m', $article[$i]['timeStamp'])) , ' ' , date("d, Y", $article[$i]['timeStamp']) ?></p>
                     <h3><a data-id="<?php echo $article[$i]['cid'] ?>" class="posttitle" href="<?php echo $article[$i]['permalink'] ?>"><?php echo $article[$i]['title'] ?></a></h3>
                     <div><?php echo $article[$i]['excerpt'] ?></div>
                     <p class="here">
                         <span class="icon-letter"><?php echo $article[$i]['strLen'] ?></span>
                         <span class="icon-view"><?php echo $article[$i]['views'] ?></span>
-                        <a href="javascript:;" class="likeThis" data-cid="<?php echo $article[$i]['cid'] ?>">
-                            <span class="icon-like"></span>
-                            <span class="count"><?php echo $article[$i]['likeNum'] ?></span>
-                        </a>
+                        <span class="icon-like"></span>
+                        <span class="count"><?php echo $article[$i]['likeNum'] ?></span>
                     </p>
                 </div>
             </div>
