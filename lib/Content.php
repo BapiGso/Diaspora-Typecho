@@ -96,7 +96,7 @@ class Content {
         if ($append && $newstr != $string) {
             $newstr .= $append;
         }
-        
+        $newstr = strip_tags($newstr, '<p>');
         return $newstr . '...';
     }
 
