@@ -36,14 +36,11 @@
     </script>
 
 </head>
-<body class="loading">
     <div id="loader"></div>
-
     <div class="nav">
         <ul id="menu-menu" class="menu">
             <?php $this->need('component/navigation.php'); ?>
         </ul>
         <p>&copy; <?php echo date("Y") ?> <a href="<?php $this->options->siteUrl(); ?>"><?php $this->options->title(); ?></a>. Proudly published with <a rel="external nofollow" href="https://typecho.org">Typecho</a>. Theme <a href="https://github.com/LoeiFy/Diaspora">Diaspora</a> Modified by <a href="https://jcl.moe">Jin</a>.</p>
     </div>
-
 <?php }?>
