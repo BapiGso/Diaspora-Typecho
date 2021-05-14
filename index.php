@@ -10,6 +10,7 @@
  */
 ?>
 <?php $this->need('component/header.php'); ?>
+<body class="loading">
 <?php 
     $article = [];
     while($this->next()) {
