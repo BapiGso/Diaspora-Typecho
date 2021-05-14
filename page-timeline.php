@@ -12,7 +12,7 @@
 
 <div id="single" class="page">
     <div id="top">
-        <a class="image-icon" href="javascript:history.back()"></a><a href="<?php $this->options->siteUrl(); ?>">
+        <a class="image-icon" href="javascript:history.back()"></a>
     </div>
     
     <div class="section" style="left: 0;">
