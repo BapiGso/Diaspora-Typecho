@@ -51,7 +51,7 @@ class Content {
 	
 	public static function GravatarSource ($Gravatar = NULL) {
         $Gravatar = Diaspora::$options->defaultGravatar;
-        if (empty($default0)) {
+        if (empty($Gravatar)) {
 	    $Gravatar = 'https://secure.gravatar.com/avatar/';
 	    }
         return $Gravatar;
@@ -72,7 +72,6 @@ class Content {
         if ( $length <= 0 ) {
             return '';
         }
-        
         // 检测原始字符串是否为UTF-8编码
         $is_utf8 = false;
         $str1 = @iconv("UTF-8", "GBK", $string);
@@ -92,12 +91,14 @@ class Content {
         if ( $is_utf8 ) {
             $newstr = @iconv("GBK", "UTF-8", $newstr);
         }
-        
+
         if ($append && $newstr != $string) {
             $newstr .= $append;
         }
+        
         $newstr = strip_tags($newstr, '<p>');
-        return $newstr . '...';
+        
+        return $newstr;
     }
 
     public static function timeAgo ($agoTime) {  
